@@ -38,7 +38,7 @@ export const handleAddQuestion = question => async dispatch => {
   const res = await _saveQuestion(question)
   dispatch(hideLoading())
   dispatch(addQuestion(res))
-  dispatch(showMessage("Poll Added Successfully"))
+  dispatch(showMessage("Question Added Successfully"))
 }
 
 export const handleAnswerQuestion = info => async dispatch => {

@@ -1,63 +1,42 @@
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
-import {
-  Avatar,
-  Typography,
-  Card,
-  Button,
-  Grid,
-  List,
-  FormControl,
-  FormControlLabel,
-  CardContent,
-  CardActions,
-  CardHeader,
-  RadioGroup,
-  Radio,
-  withStyles
-} from "@material-ui/core"
-import { formatDate, calculateVotePercent } from "../util/helpers"
-import { handleAnswerQuestion } from "../actions/questions"
-import QuestionOption from "./QuestionOption"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { formatDate, calculateVotePercent } from '../util/helpers'
+import { handleAnswerQuestion } from '../actions/questions'
+import QuestionOption from './QuestionOption'
 
-const styles = {
-  margin: {
-    marginTop: 100
-  }
-}
-
-class Poll extends React.Component {
+class QuestionPage extends React.Component {
   state = {
-    value: ""
+    optionOne: '',
+    optionTwo: '',
+    isValid: false
   }
 
   handleChange = event => {
-    this.setState({ value: event.target.value })
+    
+    this.setState({
+      [event.target.id]: event.target.value,
+      isValid: true,
+    })
   }
 
   handleSubmit = () => {
     const { question, authedUser } = this.props
+    const value =
+      this.state.optionOne === '' ? this.state.optionTwo : this.state.optionOne
     this.props.saveAnswer({
       qid: question.id,
       authedUser,
-      answer: this.state.value
+      answer: value
     })
   }
 
-  render() {
-    const {
-      classes,
-      question,
-      author,
-      isAnswered,
-      authedUser,
-      isLoading,
-    } = this.props
+  render () {
+    const { question, author, isAnswered, authedUser, isLoading } = this.props
 
     if (!isLoading && !question) {
-      return <Redirect to="/404" />
+      return <Redirect to='/404' />
     }
 
     if (!question) {
@@ -67,44 +46,58 @@ class Poll extends React.Component {
     const { optionOne, optionTwo } = question
 
     return (
-      <Fragment>
-        <Grid container className={classes.margin}>
-          <Grid item xs={1} sm={3} lg={4} xl={4} />
-          <Grid item xs={10} sm={6} lg={4} xl={3}>
-            <Card>
-              <CardHeader
-                avatar={<Avatar aria-label="Recipe" src={author.avatarURL} />}
-                title={author.name}
-                subheader={formatDate(question.timestamp)}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="headline" component="h2">
-                  Would You Rather
-                </Typography>
-
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 col-md-8 offset-md-2'>
+            <div className='card mt-5'>
+              <div class='card-body'>
+                <div>
+                  <img
+                    className='avatarQuestion'
+                    src={author.avatarURL}
+                    alt={author.name}
+                  />
+                  <span className='pl-2 text-secondary'>
+                    {author.name}
+                  </span>
+                  <p className="text-secondary font-weight-lighter mt-2">{formatDate(question.timestamp)}</p>
+                </div>
+                <hr />
+                <p className='h1 text-center text-primary'>Would You Rather</p>
+                <hr />
                 {!isAnswered && (
-                  <FormControl component="fieldset" required>
-                    <RadioGroup
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    >
-                      <FormControlLabel
-                        value="optionOne"
-                        control={<Radio />}
-                        label={optionOne.text}
+                  <form component='fieldset' required>
+                    <div className='form-check'>
+                      <input
+                        className='form-check-input'
+                        type='radio'
+                        name='w-u-r'
+                        id='optionOne'
+                        value='optionOne'
+                        onChange={this.handleChange}
                       />
-                      <FormControlLabel
-                        value="optionTwo"
-                        control={<Radio />}
-                        label={optionTwo.text}
+                      <label className='form-check-label' htmlFor='optionOne'>
+                        {optionOne.text}
+                      </label>
+                    </div>
+                    <div className='form-check'>
+                      <input
+                        className='form-check-input'
+                        type='radio'
+                        name='w-u-r'
+                        id='optionTwo'
+                        value='optionTwo'
+                        onChange={this.handleChange}
                       />
-                    </RadioGroup>
-                  </FormControl>
+                      <label className='form-check-label' htmlFor='optionTwo'>
+                        {optionTwo.text}
+                      </label>
+                    </div>
+                  </form>
                 )}
-
                 {isAnswered && (
                   <div>
-                    <List dense>
+                    <ul dense>
                       <QuestionOption
                         text={optionOne.text}
                         isChecked={optionOne.votes.includes(authedUser)}
@@ -117,34 +110,29 @@ class Poll extends React.Component {
                         votes={optionTwo.votes.length}
                         percent={optionTwo.percent}
                       />
-                    </List>
+                    </ul>
                   </div>
                 )}
-              </CardContent>
-              <CardActions>
+                <hr />
                 {!isAnswered && (
-                  <Button
-                    color="primary"
-                    variant="raised"
-                    disabled={!this.state.value}
+                  <button
+                    className='btn btn-primary btn-block'
+                    disabled={!this.state.isValid}
                     onClick={this.handleSubmit}
                   >
                     Answer
-                  </Button>
+                  </button>
                 )}
-              </CardActions>
-            </Card>
-          </Grid>
-        </Grid>
-      </Fragment>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
 
-Poll.propTypes = {
-  classes: PropTypes.shape({
-    margin: PropTypes.string.isRequired
-  }).isRequired,
+QuestionPage.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.string.isRequired,
     optionOne: PropTypes.shape({
@@ -163,13 +151,12 @@ Poll.propTypes = {
   isAnswered: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   saveAnswer: PropTypes.func.isRequired,
-  deleteQuestion: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired
 }
 
-Poll.defaultProps = {
+QuestionPage.defaultProps = {
   question: null,
   author: null
 }
@@ -182,8 +169,8 @@ const mapStateToProps = (
   const question = questions[id]
   let isAnswered = false
   if (question) {
-    question.optionOne.percent = calculateVotePercent(question, "optionOne")
-    question.optionTwo.percent = calculateVotePercent(question, "optionTwo")
+    question.optionOne.percent = calculateVotePercent(question, 'optionOne')
+    question.optionTwo.percent = calculateVotePercent(question, 'optionTwo')
     const { optionOne, optionTwo } = question
     isAnswered =
       optionOne.votes.includes(authedUser) ||
@@ -200,4 +187,4 @@ const mapStateToProps = (
 
 export default connect(mapStateToProps, {
   saveAnswer: handleAnswerQuestion
-})(withStyles(styles)(Poll))
+})(QuestionPage)

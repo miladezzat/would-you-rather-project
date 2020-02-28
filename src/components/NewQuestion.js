@@ -1,32 +1,8 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {
-  Card,
-  Grid,
-  Button,
-  Divider,
-  TextField,
-  CardActions,
-  withStyles
-} from '@material-ui/core'
 import { handleAddQuestion } from '../actions/questions'
-
-const styles = {
-  cardAction: {
-    padding: 20
-  },
-  addPollHeading: {
-    marginTop: 10,
-    marginBottom: 10
-  },
-  formCard: {
-    textAlign: 'center',
-    marginTop: 20,
-    padding: 10
-  }
-}
 
 class NewQuestion extends Component {
   state = {
@@ -56,76 +32,59 @@ class NewQuestion extends Component {
   isFormValid = () => !!this.state.optionOne && !!this.state.optionTwo
 
   render () {
-    const { classes } = this.props
     const isFormValid = this.isFormValid()
     return (
-      <Fragment>
-        <Grid container style={{ marginTop: 40 }}>
-          <Grid item xs={1} sm={2} md={3} lg={4} xl={4} />
-          <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>
-            <Card>
-              <form
-                className={classes.formCard}
-                autoComplete='off'
-                onSubmit={this.handleSubmit}
-              >
-                <h1 className="text-primary text-center pt-4 pb-2">Would You Rather</h1>
-                <Divider />
-                <TextField
-                  id='optionOne'
-                  name='optionOne'
-                  onChange={this.handleChange}
-                  value={this.state.optionOne}
-                  label='option 1'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  placeholder='enter option 1'
-                  fullWidth
-                  margin='normal'
-                  className={classes.margin}
-                />
-                <TextField
-                  id='optionTwo'
-                  name='optionTwo'
-                  onChange={this.handleChange}
-                  value={this.state.optionTwo}
-                  label='option 2'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  placeholder='enter option 2'
-                  fullWidth
-                  margin='normal'
-                  className={classes.margin}
-                />
-                <Divider />
-                <CardActions className={classes.cardAction}>
-                  <Button
+      <div className='container mt-3'>
+        <div className='row'>
+          <div className='col-12 col-md-6 offset-md-3'>
+            <div className='card'>
+              <div className='card-body'>
+                <h5 className='card-title text-primary text-center pt-4 pb-2'>
+                  Would You Rather
+                </h5>
+                <form autoComplete='off' onSubmit={this.handleSubmit}>
+                  <hr />
+                  <div className='form-group'>
+                    <label htmlFor='optionOne'>Option One</label>
+                    <input
+                      className='form-control'
+                      id='optionOne'
+                      name='optionOne'
+                      onChange={this.handleChange}
+                      value={this.state.optionOne}
+                      placeholder='enter option 1'
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='optionTwo'>Option Two</label>
+                    <input
+                      className='form-control'
+                      id='optionTwo'
+                      name='optionTwo'
+                      onChange={this.handleChange}
+                      value={this.state.optionTwo}
+                      placeholder='enter option 2'
+                    />
+                  </div>
+                  <hr />
+                  <button
                     type='submit'
-                    variant='raised'
-                    color='primary'
-                    style={{ marginLeft: 'auto' }}
+                    className='btn btn-primary btn-block'
                     disabled={!isFormValid}
                   >
                     Save
-                  </Button>
-                </CardActions>
-              </form>
-            </Card>
-          </Grid>
-        </Grid>
-      </Fragment>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
 
 NewQuestion.propTypes = {
-  classes: PropTypes.shape({
-    cardAction: PropTypes.string.isRequired,
-    addPollHeading: PropTypes.string.isRequired,
-    formCard: PropTypes.string.isRequired
-  }).isRequired,
   authedUser: PropTypes.string.isRequired,
   addQuestion: PropTypes.func.isRequired,
   history: PropTypes.shape({
@@ -138,7 +97,5 @@ const mapStateToProps = ({ authedUser }) => ({
 })
 
 export default withRouter(
-  connect(mapStateToProps, { addQuestion: handleAddQuestion })(
-    withStyles(styles)(NewQuestion)
-  )
+  connect(mapStateToProps, { addQuestion: handleAddQuestion })(NewQuestion)
 )

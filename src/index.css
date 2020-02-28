@@ -38,6 +38,36 @@ body {
 .question {
   box-shadow: 0 0 2px wheat;
 }
-.question:hover{
+.question:hover {
   box-shadow: 0 0 5px #2419be;
+}
+.profileImage {
+  width: 30%;
+  border: 1px solid #2419be;
+  border-radius: 50%;
+  padding: 1%;
+  box-shadow: 0 0 5px #2419be;
+}
+.avatarQuestion {
+  width: 10%;
+  border: 1px solid #2419be;
+  border-radius: 50%;
+}
+label {
+  cursor: pointer;
+}
+.notActive,
+.loginBtn {
+  background-color: #ffffff;
+  outline: none;
+  color: #2419be;
+  border: 1px solid #2419be;
+}
+
+.isActive,
+.isActive:hover,
+.notActive:hover,.loginBtn:hover {
+  background-color: #2419be;
+  outline: none;
+  color: #ffffff;
 }

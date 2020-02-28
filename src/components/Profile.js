@@ -1,67 +1,54 @@
-import React from "react"
-import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import { Typography, Avatar, withStyles } from "@material-ui/core"
-import Questions from "./Questions"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import Questions from './Questions'
 
-const styles = {
-  row: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: 20
-  },
-  bigAvatar: {
-    width: 150,
-    height: 150
-  },
-  headline: {
-    marginTop: 20
-  },
-  container: {
-    padding: 10
+class Profile extends Component {
+  render () {
+    const {
+      authedUser,
+      questionsAsked,
+      questionsAnswered,
+      isLoading
+    } = this.props
+
+    return (
+      <div className='container mt-4 mb-3'>
+        <div className='row'>
+          <div className='col-12 col-md-8 offset-md-2 text-center'>
+            <img
+              className='profileImage'
+              src={authedUser.avatarURL}
+              alt={authedUser.name}
+            />
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-12 col-md-8 offset-md-2'>
+            <h1 className='text-center text-primary text-uppercase'>
+              {authedUser.name}
+            </h1>
+            <p className="text-center text-secondary">{`@${authedUser.id}`}</p>
+          </div>
+        </div>
+        <div className='row mb-2 mt-2 shadow-lg bg-white p-2'>
+          <div className='col-12 col-md-8 offset-md-2'>
+            <h2 className="text-success text-center">{`Questions Asked(${questionsAsked.length})`}</h2>
+          </div>
+          {!isLoading && <Questions questionIds={questionsAsked} />}
+        </div>
+        <div className='row mb-2 mt-2 shadow-lg bg-white p-2'>
+          <div className='col-12 col-md-8 offset-md-2'>
+            <h2 className="text-success text-center">{`Questions Answered(${questionsAnswered.length})`}</h2>
+          </div>
+          {!isLoading && <Questions questionIds={questionsAnswered} />}
+        </div>
+      </div>
+    )
   }
 }
 
-const Profile = ({
-  classes,
-  authedUser,
-  questionsAsked,
-  questionsAnswered,
-  isLoading
-}) => (
-  <div className={classes.container}>
-    <div className={classes.row}>
-      <Avatar
-        alt="Adelle Charles"
-        src={authedUser.avatarURL}
-        className={classes.bigAvatar}
-      />
-    </div>
-    <div className={classes.row}>
-      <Typography variant="title">{authedUser.name}</Typography>
-    </div>
-    <div className={classes.row}>
-      <Typography variant="title">{`@${authedUser.id}`}</Typography>
-    </div>
-    <Typography
-      className={classes.headline}
-      variant="headline"
-    >{`Questions Asked(${questionsAsked.length})`}</Typography>
-    {!isLoading && <Questions questionIds={questionsAsked} />}
-    <Typography
-      className={classes.headline}
-      variant="headline"
-    >{`Questions Answered(${questionsAnswered.length})`}</Typography>
-    {!isLoading && <Questions questionIds={questionsAnswered} />}
-  </div>
-)
-
 Profile.propTypes = {
-  classes: PropTypes.shape({
-    row: PropTypes.string.isRequired,
-    bigAvatar: PropTypes.string.isRequired,
-    headline: PropTypes.string.isRequired
-  }).isRequired,
   authedUser: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -86,4 +73,4 @@ const mapStateToProps = ({ users, questions, authedUser, loadingBar }) => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Profile))
+export default connect(mapStateToProps)(Profile)

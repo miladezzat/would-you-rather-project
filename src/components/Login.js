@@ -58,19 +58,57 @@ class Login extends React.Component {
     }
 
     return (
-      <Fragment>
-        <Grid container style={{ marginTop: 40 }}>
-          <Grid item xs={1} sm={2} md={3} lg={4} xl={4} />
-          <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>
-            <Card style={{ textAlign: 'center', marginTop: 20 }}>
-              <h1 className="text-center pt-5 pb-3">Login</h1>
-              <Divider />
-              <List className={classes.userList}>
+      // <Fragment>
+      //   <Grid container style={{ marginTop: 40 }}>
+      //     <Grid item xs={1} sm={2} md={3} lg={4} xl={4} />
+      //     <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>
+      //       <Card style={{ textAlign: 'center', marginTop: 20 }}>
+      //         <h1 className="text-center pt-5 pb-3">Login</h1>
+      //         <Divider />
+      //         <List className={classes.userList}>
+      //           {userIds &&
+      //             userIds.map(id => (
+      //               <div
+      //                 role='button'
+      //                 tabIndex='0'
+      //                 onClick={() => this.handleToggle(id)}
+      //                 onKeyPress={() => this.handleToggle(id)}
+      //                 key={id}
+      //               >
+      //                 <User
+      //                   id={id}
+      //                   isSelected={this.state.selectedUser === id}
+      //                 />
+      //                 <Divider />
+      //               </div>
+      //             ))}
+      //         </List>
+      //         <CardActions className={classes.loginCardAction}>
+      //           <button
+      //             className='btn btn-success btn-block'
+      //             disabled={!this.state.selectedUser}
+      //             onClick={this.handleLoginClick}
+      //           >
+      //             Login
+      //           </button>
+      //         </CardActions>
+      //       </Card>
+      //     </Grid>
+      //   </Grid>
+      // </Fragment>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 col-md-8 offset-md-2'>
+            <div className='card mt-5'>
+              <div className='card-body'>
+                <h5 className='card-title text-center text-primary h1'>Login</h5>
+                <hr />
                 {userIds &&
                   userIds.map(id => (
                     <div
                       role='button'
                       tabIndex='0'
+                      className="mb-2"
                       onClick={() => this.handleToggle(id)}
                       onKeyPress={() => this.handleToggle(id)}
                       key={id}
@@ -78,24 +116,21 @@ class Login extends React.Component {
                       <User
                         id={id}
                         isSelected={this.state.selectedUser === id}
-                      />
-                      <Divider />
+                      />                      
                     </div>
                   ))}
-              </List>
-              <CardActions className={classes.loginCardAction}>
                 <button
-                  className='btn btn-success btn-block'
+                  className='btn loginBtn btn-block'
                   disabled={!this.state.selectedUser}
                   onClick={this.handleLoginClick}
                 >
                   Login
                 </button>
-              </CardActions>
-            </Card>
-          </Grid>
-        </Grid>
-      </Fragment>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
