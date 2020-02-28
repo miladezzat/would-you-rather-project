@@ -1,8 +1,7 @@
 import {
   QUESTIONS_FETCHED,
   ADD_QUESTION,
-  SAVE_QUESTION_ANSWER,
-  DELETE_QUESTION
+  SAVE_QUESTION_ANSWER,  
 } from "../actions/questions"
 
 const questions = (state = {}, action) => {
@@ -31,13 +30,6 @@ const questions = (state = {}, action) => {
         }
       }
     }
-    case DELETE_QUESTION:
-      return Object.keys(state).reduce((acc, questionId) => {
-        if (questionId !== action.qid) {
-          acc[questionId] = state[questionId]
-        }
-        return acc
-      }, {})
     default:
       return state
   }

@@ -8,7 +8,6 @@ import {
   Card,
   Button,
   Grid,
-  IconButton,
   List,
   FormControl,
   FormControlLabel,
@@ -19,10 +18,9 @@ import {
   Radio,
   withStyles
 } from "@material-ui/core"
-import DeleteIcon from "@material-ui/icons/Delete"
 import { formatDate, calculateVotePercent } from "../util/helpers"
 import { handleAnswerQuestion } from "../actions/questions"
-import PollOption from "./PollOption"
+import QuestionOption from "./QuestionOption"
 
 const styles = {
   margin: {
@@ -109,13 +107,13 @@ class Poll extends React.Component {
                 {isAnswered && (
                   <div>
                     <List dense>
-                      <PollOption
+                      <QuestionOption
                         text={optionOne.text}
                         isChecked={optionOne.votes.includes(authedUser)}
                         votes={optionOne.votes.length}
                         percent={optionOne.percent}
                       />
-                      <PollOption
+                      <QuestionOption
                         text={optionTwo.text}
                         isChecked={optionTwo.votes.includes(authedUser)}
                         votes={optionTwo.votes.length}
@@ -135,18 +133,6 @@ class Poll extends React.Component {
                   >
                     Answer
                   </Button>
-                )}
-                {question.author === authedUser && (
-                  <IconButton
-                    aria-label="Delete"
-                    style={{ marginLeft: "auto" }}
-                    onClick={() => {
-                      deleteQuestion(question.id)
-                      history.push("/")
-                    }}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
                 )}
               </CardActions>
             </Card>

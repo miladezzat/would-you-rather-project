@@ -2,7 +2,6 @@ import { USERS_FETCHED } from "../actions/users"
 import {
   SAVE_QUESTION_ANSWER,
   ADD_QUESTION,
-  DELETE_QUESTION
 } from "../actions/questions"
 
 const users = (state = {}, action) => {
@@ -36,26 +35,6 @@ const users = (state = {}, action) => {
         }
       }
     }
-    case DELETE_QUESTION:
-      return Object.keys(state).reduce((acc, userId) => {
-        acc[userId] = {
-          ...state[userId],
-          questions: state[userId].questions.filter(q => q !== action.qid),
-          answers: Object.keys(state[userId].answers).reduce(
-            (answersAcc, ansId) => {
-              if (action.qid !== ansId) {
-                return {
-                  ...answersAcc,
-                  [ansId]: state[userId].answers[ansId]
-                }
-              }
-              return answersAcc
-            },
-            {}
-          )
-        }
-        return acc
-      }, {})
     default:
       return state
   }

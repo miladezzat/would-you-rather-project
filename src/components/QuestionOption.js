@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import {
   LinearProgress,
-  ListItem,
   ListItemIcon,
   ListItemText,
   withStyles
@@ -18,8 +17,8 @@ const styles = theme => ({
   }
 })
 
-const PollOption = ({ classes, isChecked, text, votes, percent }) => (
-  <ListItem>
+const QuestionOption = ({ classes, isChecked, text, votes, percent }) => (
+  <li className="list-group-item">
     {isChecked && (
       <ListItemIcon>
         <Done className={classes.radioBtn} />
@@ -34,10 +33,10 @@ const PollOption = ({ classes, isChecked, text, votes, percent }) => (
         value={percent}
       />
     </ListItemText>
-  </ListItem>
+  </li>
 )
 
-PollOption.propTypes = {
+QuestionOption.propTypes = {
   classes: PropTypes.shape({
     progressBar: PropTypes.string.isRequired,
     radioBtn: PropTypes.string.isRequired
@@ -48,4 +47,4 @@ PollOption.propTypes = {
   votes: PropTypes.number.isRequired
 }
 
-export default withStyles(styles)(PollOption)
+export default withStyles(styles)(QuestionOption)

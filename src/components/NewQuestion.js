@@ -1,9 +1,8 @@
-import React, { Fragment, Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
+import React, { Fragment, Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import {
-  Typography,
   Card,
   Grid,
   Button,
@@ -11,8 +10,8 @@ import {
   TextField,
   CardActions,
   withStyles
-} from "@material-ui/core"
-import { handleAddQuestion } from "../actions/questions"
+} from '@material-ui/core'
+import { handleAddQuestion } from '../actions/questions'
 
 const styles = {
   cardAction: {
@@ -23,16 +22,16 @@ const styles = {
     marginBottom: 10
   },
   formCard: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 20,
     padding: 10
   }
 }
 
-class AddPoll extends Component {
+class NewQuestion extends Component {
   state = {
-    optionOne: "",
-    optionTwo: ""
+    optionOne: '',
+    optionTwo: ''
   }
 
   handleChange = e => {
@@ -51,12 +50,12 @@ class AddPoll extends Component {
       optionOneText: this.state.optionOne,
       optionTwoText: this.state.optionTwo
     })
-    this.props.history.push("/")
+    this.props.history.push('/')
   }
 
   isFormValid = () => !!this.state.optionOne && !!this.state.optionTwo
 
-  render() {
+  render () {
     const { classes } = this.props
     const isFormValid = this.isFormValid()
     return (
@@ -67,52 +66,46 @@ class AddPoll extends Component {
             <Card>
               <form
                 className={classes.formCard}
-                autoComplete="off"
+                autoComplete='off'
                 onSubmit={this.handleSubmit}
               >
-                <Typography
-                  color="primary"
-                  className={classes.addPollHeading}
-                  variant="display1"
-                >
-                  Would You Rather
-                </Typography>
+                <h1 className="text-primary text-center pt-4 pb-2">Would You Rather</h1>
                 <Divider />
                 <TextField
-                  id="optionOne"
-                  name="optionOne"
+                  id='optionOne'
+                  name='optionOne'
                   onChange={this.handleChange}
                   value={this.state.optionOne}
-                  label="option 1"
+                  label='option 1'
                   InputLabelProps={{
                     shrink: true
                   }}
-                  placeholder="enter option 1"
+                  placeholder='enter option 1'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   className={classes.margin}
                 />
                 <TextField
-                  id="optionTwo"
-                  name="optionTwo"
+                  id='optionTwo'
+                  name='optionTwo'
                   onChange={this.handleChange}
                   value={this.state.optionTwo}
-                  label="option 2"
+                  label='option 2'
                   InputLabelProps={{
                     shrink: true
                   }}
-                  placeholder="enter option 2"
+                  placeholder='enter option 2'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   className={classes.margin}
                 />
                 <Divider />
                 <CardActions className={classes.cardAction}>
                   <Button
-                    type="submit"
-                    variant="raised"
-                    color="primary"
-                    style={{ marginLeft: "auto" }}
+                    type='submit'
+                    variant='raised'
+                    color='primary'
+                    style={{ marginLeft: 'auto' }}
                     disabled={!isFormValid}
                   >
                     Save
@@ -127,7 +120,7 @@ class AddPoll extends Component {
   }
 }
 
-AddPoll.propTypes = {
+NewQuestion.propTypes = {
   classes: PropTypes.shape({
     cardAction: PropTypes.string.isRequired,
     addPollHeading: PropTypes.string.isRequired,
@@ -146,6 +139,6 @@ const mapStateToProps = ({ authedUser }) => ({
 
 export default withRouter(
   connect(mapStateToProps, { addQuestion: handleAddQuestion })(
-    withStyles(styles)(AddPoll)
+    withStyles(styles)(NewQuestion)
   )
 )

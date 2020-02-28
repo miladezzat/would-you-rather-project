@@ -1,49 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import {
   Checkbox,
-  Avatar,
-  Typography,
-  ListItem,
   ListItemSecondaryAction,
-  withStyles
-} from "@material-ui/core"
+} from '@material-ui/core'
 
-const styles = theme => ({
-  notSelected: {
-    backgroundColor: theme.palette.text.disabled
-  },
-  selected: {
-    backgroundColor: "transparent"
-  },
-  bigAvatar: {
-    width: 60,
-    height: 60,
-    marginRight: 20
-  }
-})
-
-const User = ({ classes, isSelected, user }) => (
-  <ListItem
-    dense
-    button
-    className={isSelected ? classes.notSelected : classes.selected}
-  >
-    <Avatar className={classes.bigAvatar} src={user.avatarURL} />
-    <Typography variant="title">{user.name}</Typography>
+const User = ({ isSelected, user }) => (
+  <li className='list-group-item loginUserLink'>
+    <img className='avatarIcon' src={user.avatarURL} alt={user.name} />
+    <span>{user.name}</span>
     <ListItemSecondaryAction>
       <Checkbox checked={isSelected} />
     </ListItemSecondaryAction>
-  </ListItem>
+  </li>
 )
 
 User.propTypes = {
-  classes: PropTypes.shape({
-    bigAvatar: PropTypes.string.isRequired,
-    notSelected: PropTypes.string.isRequired,
-    selected: PropTypes.string.isRequired
-  }).isRequired,
   isSelected: PropTypes.bool.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -56,4 +29,4 @@ const mapStateToProps = ({ users }, { id }) => ({
   user: users[id]
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(User))
+export default connect(mapStateToProps)(User)

@@ -9,7 +9,6 @@ import { showMessage } from "./message"
 export const QUESTIONS_FETCHED = "QUESTIONS_FETCHED"
 export const ADD_QUESTION = "ADD_QUESTION"
 export const SAVE_QUESTION_ANSWER = "SAVE_QUESTION_ANSWER"
-export const DELETE_QUESTION = "DELETE_QUESTION"
 
 export const questionsFetched = questions => ({
   type: QUESTIONS_FETCHED,
@@ -26,10 +25,6 @@ export const saveQuestionAnswer = info => ({
   info
 })
 
-export const deleteQuestion = qid => ({
-  type: DELETE_QUESTION,
-  qid
-})
 
 export const fetchQuestions = () => async dispatch => {
   dispatch(showLoading())
