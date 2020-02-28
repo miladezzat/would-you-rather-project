@@ -1,47 +1,23 @@
-import React from "react"
-import PropTypes from "prop-types"
-import {
-  Typography,
-  Button,
-  CardContent,
-  CardActions,
-  Card,
-  withStyles
-} from "@material-ui/core"
-
-const styles = {
-  container: {
-    padding: 20
-  }
-}
-
-const NotFound = ({ classes, history }) => (
-  <div className={classes.container}>
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="display1" component="h1">
-          404
-        </Typography>
-        <Typography component="p" variant="title">
-          Page Not Found :(
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" color="primary" onClick={() => history.push("/")}>
-          Go Home
-        </Button>
-      </CardActions>
-    </Card>
+import React from 'react'
+import { Link } from 'react-router-dom'
+const NotFound = () => (
+  <div className='container'>
+    <div className='row'>
+      <div className='col-12 col-md-8 m-auto pt-4'>
+        <div className='card'>
+          <div className='card-body'>
+            <h5 className='card-title h1 text-center'>404</h5>
+            <p className='card-text text-center'>
+              Opps... We Very Sorry for this, Request Page not found
+            </p>
+            <Link to='/' className='btn btn-primary btn-block '>
+              Back To Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 )
 
-NotFound.propTypes = {
-  classes: PropTypes.shape({
-    container: PropTypes.string.isRequired
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
-}
-
-export default withStyles(styles)(NotFound)
+export default NotFound
