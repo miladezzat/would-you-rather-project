@@ -1,33 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {
-  Card,
-  Grid,
-  Divider,
-  List,
-  CardActions,
-  withStyles
-} from '@material-ui/core'
 import User from './User'
 import { setAuthedUser } from '../actions/authedUser'
 import { fetchQuestions } from '../actions/questions'
-
-const styles = {
-  userList: {
-    maxHeight: 500,
-    overflowY: 'auto'
-  },
-  loginCardAction: {
-    padding: 20
-  },
-  loginHeading: {
-    marginTop: 10,
-    marginBottom: 10
-  }
-}
-
 class Login extends React.Component {
   state = {
     redirectToReferrer: false,
@@ -49,7 +26,7 @@ class Login extends React.Component {
   }
 
   render () {
-    const { classes, userIds } = this.props
+    const { userIds } = this.props
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
 
@@ -58,57 +35,21 @@ class Login extends React.Component {
     }
 
     return (
-      // <Fragment>
-      //   <Grid container style={{ marginTop: 40 }}>
-      //     <Grid item xs={1} sm={2} md={3} lg={4} xl={4} />
-      //     <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>
-      //       <Card style={{ textAlign: 'center', marginTop: 20 }}>
-      //         <h1 className="text-center pt-5 pb-3">Login</h1>
-      //         <Divider />
-      //         <List className={classes.userList}>
-      //           {userIds &&
-      //             userIds.map(id => (
-      //               <div
-      //                 role='button'
-      //                 tabIndex='0'
-      //                 onClick={() => this.handleToggle(id)}
-      //                 onKeyPress={() => this.handleToggle(id)}
-      //                 key={id}
-      //               >
-      //                 <User
-      //                   id={id}
-      //                   isSelected={this.state.selectedUser === id}
-      //                 />
-      //                 <Divider />
-      //               </div>
-      //             ))}
-      //         </List>
-      //         <CardActions className={classes.loginCardAction}>
-      //           <button
-      //             className='btn btn-success btn-block'
-      //             disabled={!this.state.selectedUser}
-      //             onClick={this.handleLoginClick}
-      //           >
-      //             Login
-      //           </button>
-      //         </CardActions>
-      //       </Card>
-      //     </Grid>
-      //   </Grid>
-      // </Fragment>
       <div className='container'>
         <div className='row'>
           <div className='col-12 col-md-8 offset-md-2'>
             <div className='card mt-5'>
               <div className='card-body'>
-                <h5 className='card-title text-center text-primary h1'>Login</h5>
+                <h5 className='card-title text-center text-primary h1'>
+                  Login
+                </h5>
                 <hr />
                 {userIds &&
                   userIds.map(id => (
                     <div
                       role='button'
                       tabIndex='0'
-                      className="mb-2"
+                      className='mb-2'
                       onClick={() => this.handleToggle(id)}
                       onKeyPress={() => this.handleToggle(id)}
                       key={id}
@@ -116,7 +57,7 @@ class Login extends React.Component {
                       <User
                         id={id}
                         isSelected={this.state.selectedUser === id}
-                      />                      
+                      />
                     </div>
                   ))}
                 <button
@@ -136,11 +77,6 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.shape({
-    userList: PropTypes.string.isRequired,
-    loginCardAction: PropTypes.string.isRequired,
-    loginHeading: PropTypes.string.isRequired
-  }).isRequired,
   userIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   login: PropTypes.func.isRequired,
   getPolls: PropTypes.func.isRequired,
@@ -160,4 +96,4 @@ const mapStateToProps = ({ users }) => ({
 export default connect(mapStateToProps, {
   login: setAuthedUser,
   getPolls: fetchQuestions
-})(withStyles(styles)(Login))
+})(Login)
