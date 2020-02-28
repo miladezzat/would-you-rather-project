@@ -1,20 +1,20 @@
 body {
-  font-family: 'Montserrat'!important ;
+  font-family: "Montserrat" !important ;
 }
-.logout{
+.logout {
   border: none;
   background-color: transparent;
   color: wheat;
 }
-.avatarIcon{
-  height:30px;
+.avatarIcon {
+  height: 30px;
   margin-right: 10px;
   border-radius: 50%;
   border: 1px solid #2419be;
   padding: 2px;
   box-shadow: 0 0 5px wheat;
 }
-.addBtn{
+.addBtn {
   background-color: blue;
   color: wheat;
   position: fixed;
@@ -22,17 +22,22 @@ body {
   right: 2%;
   box-shadow: 0 0 5px black;
 }
-.addBtn:hover{
+.addBtn:hover {
   background-color: wheat;
   color: #2419be;
   border: 1px solid #2419be;
 }
-.loginUserLink{
+.loginUserLink {
   cursor: pointer;
   text-align: left;
 }
-.loginUserLink img{
+.loginUserLink img {
   width: 50px;
-  height: 50px;  
-
+  height: 50px;
+}
+.question {
+  box-shadow: 0 0 2px wheat;
+}
+.question:hover{
+  box-shadow: 0 0 5px #2419be;
 }
