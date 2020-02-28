@@ -7,7 +7,7 @@ import {
   QuestionFilters
 } from "../actions/questionVisibilityFilter"
 
-const TopTab = ({
+const ToggleQuestions = ({
   questionVisibilityFilter,
   changeQuestionVisibilityFilter
 }) => (
@@ -29,7 +29,7 @@ const TopTab = ({
   </Paper>
 )
 
-TopTab.propTypes = {
+ToggleQuestions.propTypes = {
   questionVisibilityFilter: PropTypes.string.isRequired,
   changeQuestionVisibilityFilter: PropTypes.func.isRequired
 }
@@ -40,4 +40,4 @@ const mapStateToProps = ({ questionVisibilityFilter }) => ({
 
 export default connect(mapStateToProps, {
   changeQuestionVisibilityFilter: toggleQuestionVisibilityFilter
-})(TopTab)
+})(ToggleQuestions)

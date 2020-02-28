@@ -54,8 +54,6 @@ class Poll extends React.Component {
       isAnswered,
       authedUser,
       isLoading,
-      deleteQuestion,
-      history
     } = this.props
 
     if (!isLoading && !question) {

@@ -1,49 +1,25 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import {
-  Typography,
-  Card,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  CardContent
-} from "@material-ui/core"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const Question = ({ question }) => {
   const { optionOne, optionTwo } = question
 
-  return (
-    <Grid item xs={12} sm={6} lg={4} xl={3}>
-      <Link style={{ textDecoration: "none" }} to={`/questions/${question.id}`}>
-        <Card>
-          <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
-              Would You Rather
-            </Typography>
-            <div>
-              <List dense>
-                <ListItem>
-                  <ListItemIcon>
-                    <Typography variant="headline">•</Typography>
-                  </ListItemIcon>
-                  <ListItemText>{optionOne.text}</ListItemText>
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <Typography variant="headline">•</Typography>
-                  </ListItemIcon>
-                  <ListItemText>{optionTwo.text}</ListItemText>
-                </ListItem>
-              </List>
-            </div>
-          </CardContent>
-        </Card>
+  return (    
+    <div className='col-12 col-md-8 m-auto'>
+      <Link style={{ textDecoration: 'none' }} to={`/questions/${question.id}`}>
+        <div className='card'>
+          <div className='card-body'>
+            <h5 className='text-center text-success h3'>Would You Rather</h5>
+            <p className='card-text'>
+              <p className='text-center lead'>{optionOne.text}</p>
+              <p className='text-center lead'>{optionTwo.text}</p>
+            </p>
+          </div>
+        </div>
       </Link>
-    </Grid>
+    </div>
   )
 }
 

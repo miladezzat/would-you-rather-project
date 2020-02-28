@@ -10,11 +10,11 @@ import NewQuestion from "./NewQuestion"
 import Leaderboard from "./Leaderboard"
 import QuestionPage from "./QuestionPage"
 import { fetchUsers } from "../actions/users"
-import PrivateRoute from "./PrivateRoute"
+import ProtectedRouter from "./ProtectedRouter"
 import Message from "./Message"
 import Profile from "./Profile"
 import NotFound from "./NotFound"
-import TopTab from "./TopTab"
+import ToggleQuestions from "./ToggleQuestions"
 
 class App extends Component {
   componentDidMount() {
@@ -28,21 +28,21 @@ class App extends Component {
           <LoadingBar />          
           <Nav />          
           <Switch>
-            <PrivateRoute
+            <ProtectedRouter
               path="/"
               exact
               component={() => (
                 <Fragment>
-                  <TopTab />
+                  <ToggleQuestions />
                   <QuestionsContainer />
                 </Fragment>
               )}
             />
-            <PrivateRoute path="/leaderboard" component={Leaderboard} />
+            <ProtectedRouter path="/leaderboard" component={Leaderboard} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/newquestion" component={NewQuestion} />
-            <PrivateRoute path="/questions/:id" component={QuestionPage} />
-            <PrivateRoute path="/profile" component={Profile} />
+            <ProtectedRouter path="/newquestion" component={NewQuestion} />
+            <ProtectedRouter path="/questions/:id" component={QuestionPage} />
+            <ProtectedRouter path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
           <Message />

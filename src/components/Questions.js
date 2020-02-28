@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import { Grid, withStyles } from "@material-ui/core"
-import Question from "./Question"
-import AddQuestionButton from "./AddQuestionButton"
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { Grid, withStyles } from '@material-ui/core'
+import Question from './Question'
+import AddQuestionButton from './AddQuestionButton'
 
 const styles = {
   spacing: {
@@ -10,15 +10,19 @@ const styles = {
   }
 }
 
-const Questions = ({ classes, questionIds }) => (
-  <Fragment>
-    <div className={classes.spacing}>
-      <Grid container spacing={16}>
-        {questionIds.map(id => <Question key={id} id={id} />)}
-      </Grid>
+const Questions = ({ questionIds }) => (
+  <div className='container'>
+    <div className='row mb-5 mt-3'>
+      <div className='col-12'>
+        <h1 className='text-center mt-3 mb-2 text-primary'>Feed News</h1>
+      </div>
     </div>
-    <AddQuestionButton />
-  </Fragment>
+    <div className='row'>
+      {questionIds.map(id => (
+        <Question key={id} id={id} />
+      ))}
+    </div>
+  </div>
 )
 
 Questions.propTypes = {
