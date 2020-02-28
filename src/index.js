@@ -6,6 +6,9 @@ import App from "./components/App"
 
 import reducers from "./reducers"
 import middleware from "./middlewares"
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 import "./index.css"
 
 const store = createStore(reducers, middleware)

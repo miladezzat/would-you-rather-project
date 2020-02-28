@@ -200,38 +200,3 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
-
-
-export function _deleteQuestion(qid) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      users = Object.keys(users).reduce((acc, userId) => {
-        acc[userId] = {
-          ...users[userId],
-          questions: users[userId].questions.filter(q => q !== qid),
-          answers: Object.keys(users[userId].answers).reduce(
-            (answersAcc, ansId) => {
-              if (qid !== ansId) {
-                return {
-                  ...answersAcc,
-                  [ansId]: users[userId].answers[ansId]
-                }
-              }
-              return answersAcc
-            },
-            {}
-          )
-        }
-        return acc
-      }, {})
-
-      questions = Object.keys(questions).reduce((acc, questionId) => {
-        if (questionId !== qid) {
-          acc[questionId] = questions[questionId]
-        }
-        return acc
-      }, {})
-      res()
-    }, 500)
-  })
-}

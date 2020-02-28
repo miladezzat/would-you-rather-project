@@ -21,7 +21,7 @@ import {
 } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { formatDate, calculateVotePercent } from "../util/helpers"
-import { handleAnserQuestion, handleDeleteQuestion } from "../actions/questions"
+import { handleAnswerQuestion } from "../actions/questions"
 import PollOption from "./PollOption"
 
 const styles = {
@@ -215,6 +215,5 @@ const mapStateToProps = (
 }
 
 export default connect(mapStateToProps, {
-  saveAnswer: handleAnserQuestion,
-  deleteQuestion: handleDeleteQuestion
+  saveAnswer: handleAnswerQuestion
 })(withStyles(styles)(Poll))

@@ -4,7 +4,6 @@ import users from "./users"
 import questions from "./questions"
 import authedUser from "./authedUser"
 import questionVisibilityFilter from "./questionVisibilityFilter"
-import drawer from "./drawer"
 import message from "./message"
 
 export default combineReducers({
@@ -12,7 +11,6 @@ export default combineReducers({
   authedUser,
   questions,
   questionVisibilityFilter,
-  drawer,
   message,
   loadingBar: loadingBarReducer
 })

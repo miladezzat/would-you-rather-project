@@ -2,8 +2,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar"
 import {
   _getQuestions,
   _saveQuestion,
-  _saveQuestionAnswer,
-  _deleteQuestion
+  _saveQuestionAnswer,  
 } from "../util/_DATA"
 import { showMessage } from "./message"
 
@@ -47,18 +46,10 @@ export const handleAddQuestion = question => async dispatch => {
   dispatch(showMessage("Poll Added Successfully"))
 }
 
-export const handleAnserQuestion = info => async dispatch => {
+export const handleAnswerQuestion = info => async dispatch => {
   dispatch(showLoading())
   await _saveQuestionAnswer(info)
   dispatch(hideLoading())
   dispatch(saveQuestionAnswer(info))
   dispatch(showMessage("Answer updated Successfully"))
-}
-
-export const handleDeleteQuestion = qid => async dispatch => {
-  dispatch(showLoading())
-  await _deleteQuestion(qid)
-  dispatch(hideLoading())
-  dispatch(deleteQuestion(qid))
-  dispatch(showMessage("Question deleted successfully"))
 }

@@ -4,12 +4,11 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import LoadingBar from "react-redux-loading-bar"
 import QuestionsContainer from "./QuestionsContainer"
-import LeftDrawer from "./LeftDrawer"
-import TopNav from "./TopNav"
+import Nav from './Nav'
 import Login from "./Login"
 import NewQuestion from "./NewQuestion"
 import Leaderboard from "./Leaderboard"
-import Poll from "./Poll"
+import QuestionPage from "./QuestionPage"
 import { fetchUsers } from "../actions/users"
 import PrivateRoute from "./PrivateRoute"
 import Message from "./Message"
@@ -26,9 +25,8 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
-          <TopNav />
-          <LeftDrawer />
+          <LoadingBar />          
+          <Nav />          
           <Switch>
             <PrivateRoute
               path="/"
@@ -42,8 +40,8 @@ class App extends Component {
             />
             <PrivateRoute path="/leaderboard" component={Leaderboard} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/add" component={NewQuestion} />
-            <PrivateRoute path="/questions/:id" component={Poll} />
+            <PrivateRoute path="/newquestion" component={NewQuestion} />
+            <PrivateRoute path="/questions/:id" component={QuestionPage} />
             <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>

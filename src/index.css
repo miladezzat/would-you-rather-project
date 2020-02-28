@@ -2,3 +2,16 @@ body {
   margin: 0;
   font-family: 'Montserrat' ;
 }
+.logout{
+  border: none;
+  background-color: transparent;
+  color: wheat;
+}
+.avatarIcon{
+  height:30px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 1px solid #2419be;
+  padding: 2px;
+  box-shadow: 0 0 5px wheat;
+}
