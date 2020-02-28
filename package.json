@@ -47,5 +47,20 @@
     "css-loader": "^3.4.2",
     "redux-devtools-extension": "^2.13.8",
     "style-loader": "^1.1.2"
-  }
+  },
+  "description": "## Setup",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miladezzat/would-you-rather-project.git"
+  },
+  "keywords": [
+    "Reactjs"
+  ],
+  "author": "Milad E. Fahmy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miladezzat/would-you-rather-project/issues"
+  },
+  "homepage": "https://github.com/miladezzat/would-you-rather-project#readme"
 }
