@@ -97,7 +97,7 @@ class QuestionPage extends React.Component {
                 )}
                 {isAnswered && (
                   <div>
-                    <ul dense>
+                    <ul dense="true">
                       <QuestionOption
                         text={optionOne.text}
                         isChecked={optionOne.votes.includes(authedUser)}
