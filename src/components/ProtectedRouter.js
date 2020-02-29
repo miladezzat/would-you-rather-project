@@ -22,7 +22,6 @@ const ProtectedRouter = ({ component: Component, isAuthenticated, ...rest }) => 
 )
 
 ProtectedRouter.propTypes = {
-  component: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired

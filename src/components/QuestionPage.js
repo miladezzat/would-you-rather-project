@@ -50,7 +50,7 @@ class QuestionPage extends React.Component {
         <div className='row'>
           <div className='col-12 col-md-8 offset-md-2'>
             <div className='card mt-5'>
-              <div class='card-body'>
+              <div className='card-body'>
                 <div>
                   <img
                     className='avatarQuestion'
@@ -156,10 +156,6 @@ QuestionPage.propTypes = {
   }).isRequired
 }
 
-QuestionPage.defaultProps = {
-  question: null,
-  author: null
-}
 
 const mapStateToProps = (
   { questions, users, authedUser, loadingBar },
