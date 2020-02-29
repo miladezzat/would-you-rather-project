@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { formatDate, calculateVotePercent } from '../util/helpers'
@@ -130,30 +129,6 @@ class QuestionPage extends React.Component {
       </div>
     )
   }
-}
-
-QuestionPage.propTypes = {
-  question: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    optionOne: PropTypes.shape({
-      text: PropTypes.string.isRequired
-    }),
-    optionTwo: PropTypes.shape({
-      text: PropTypes.string.isRequired
-    })
-  }),
-  author: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarURL: PropTypes.string.isRequired
-  }),
-  authedUser: PropTypes.string.isRequired,
-  isAnswered: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  saveAnswer: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 }
 
 

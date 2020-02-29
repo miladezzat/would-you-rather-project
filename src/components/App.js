@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
 import LoadingBar from "react-redux-loading-bar"
 import QuestionsContainer from "./QuestionsContainer"
 import Nav from './Nav'
@@ -52,8 +51,5 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  getAllUsers: PropTypes.func.isRequired
-}
 
 export default connect(null, { getAllUsers: fetchUsers })(App)

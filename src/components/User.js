@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   Checkbox,
@@ -16,14 +15,6 @@ const User = ({ isSelected, user }) => (
   </li>
 )
 
-User.propTypes = {
-  isSelected: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarURL: PropTypes.string.isRequired
-  }).isRequired
-}
 
 const mapStateToProps = ({ users }, { id }) => ({
   user: users[id]

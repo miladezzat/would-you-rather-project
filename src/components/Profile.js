@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import Questions from './Questions'
 
 class Profile extends Component {
@@ -48,16 +47,6 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-  authedUser: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarURL: PropTypes.string.isRequired
-  }).isRequired,
-  questionsAsked: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  questionsAnswered: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  isLoading: PropTypes.bool.isRequired
-}
 
 const mapStateToProps = ({ users, questions, authedUser, loadingBar }) => {
   const questionsAsked = !questions ? [] : users[authedUser].questions

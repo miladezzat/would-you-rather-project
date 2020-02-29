@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import {
   LinearProgress,
   ListItemIcon,
@@ -36,15 +35,5 @@ const QuestionOption = ({ classes, isChecked, text, votes, percent }) => (
   </li>
 )
 
-QuestionOption.propTypes = {
-  classes: PropTypes.shape({
-    progressBar: PropTypes.string.isRequired,
-    radioBtn: PropTypes.string.isRequired
-  }).isRequired,
-  isChecked: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  percent: PropTypes.number.isRequired,
-  votes: PropTypes.number.isRequired
-}
 
 export default withStyles(styles)(QuestionOption)

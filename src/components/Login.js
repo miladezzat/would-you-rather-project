@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import User from './User'
@@ -76,18 +75,6 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
-  userIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  login: PropTypes.func.isRequired,
-  getPolls: PropTypes.func.isRequired,
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      from: PropTypes.shape({
-        pathname: PropTypes.string.isRequired
-      })
-    })
-  }).isRequired
-}
 
 const mapStateToProps = ({ users }) => ({
   userIds: Object.keys(users)

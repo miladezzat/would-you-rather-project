@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { handleAddQuestion } from '../actions/questions'
@@ -84,13 +83,6 @@ class NewQuestion extends Component {
   }
 }
 
-NewQuestion.propTypes = {
-  authedUser: PropTypes.string.isRequired,
-  addQuestion: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
-}
 
 const mapStateToProps = ({ authedUser }) => ({
   authedUser

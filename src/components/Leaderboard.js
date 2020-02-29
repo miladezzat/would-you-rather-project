@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
@@ -44,16 +43,6 @@ class Leaderboard extends Component {
   }
 }
 
-Leaderboard.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      avatarURL: PropTypes.string.isRequired,
-      questions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-      answers: PropTypes.object.isRequired
-    }).isRequired
-  ).isRequired
-}
 
 const mapStateToProps = ({ users }) => {
   const userScore = user =>

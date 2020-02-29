@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { Snackbar } from "@material-ui/core"
 import { hideMessage } from "../actions/message"
@@ -13,12 +12,6 @@ const Message = ({ message, open, handleClose }) => (
     message={<span id="mesage">{message}</span>}
   />
 )
-
-Message.propTypes = {
-  message: PropTypes.string,
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired
-}
 
 Message.defaultProps = {
   message: ""

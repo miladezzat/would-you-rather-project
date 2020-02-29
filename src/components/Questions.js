@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Question from './Question'
 import AddQuestionButton from './AddQuestionButton'
 
@@ -19,8 +18,5 @@ const Questions = ({ questionIds }) => (
   </div>
 )
 
-Questions.propTypes = {
-  questionIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
-}
 
 export default Questions;

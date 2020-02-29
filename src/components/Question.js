@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { formatDate } from '../util/helpers'
 
 const Question = ({ question }) => {
@@ -31,19 +30,6 @@ const Question = ({ question }) => {
   )
 }
 
-Question.propTypes = {
-  question: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    timestamp: PropTypes.number.isRequired,
-    optionOne: PropTypes.shape({
-      text: PropTypes.string.isRequired
-    }).isRequired,
-    optionTwo: PropTypes.shape({
-      text: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
-}
 
 const mapStateToProps = ({ questions }, { id }) => {
   const question = questions[id]

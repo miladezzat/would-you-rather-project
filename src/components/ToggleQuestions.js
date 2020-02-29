@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import {
   toggleQuestionVisibilityFilter,
   QuestionFilters
@@ -42,10 +41,6 @@ class ToggleQuestions extends Component {
       </div>
     )
   }
-}
-
-ToggleQuestions.propTypes = {
-  changeQuestionVisibilityFilter: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ questionVisibilityFilter }) => ({
